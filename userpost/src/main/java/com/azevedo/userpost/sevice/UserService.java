@@ -33,4 +33,11 @@ public class UserService {
         return UserMapper.toDTO(saved);
 
     }
+
+    public void deleteById(String id) {
+        userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("ID não encontrado"));
+        userRepository.deleteById(id);
+    }
+
 }
