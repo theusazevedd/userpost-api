@@ -1,5 +1,6 @@
 package com.azevedo.userpost.domain;
 
+import com.azevedo.userpost.dto.AuthorDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,7 @@ public class Post {
     private LocalDate createAt;
     private String title;
     private String body;
-    private User author;
+    private AuthorDTO author;
 
     @Override
     public boolean equals(Object o) {
