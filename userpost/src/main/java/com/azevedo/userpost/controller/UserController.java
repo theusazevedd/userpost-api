@@ -6,9 +6,7 @@ import com.azevedo.userpost.mapper.UserMapper;
 import com.azevedo.userpost.sevice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +26,14 @@ public class UserController {
                 .toList();
 
         return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponse> findById(@PathVariable String id) {
+        User user = userService.findById(id);
+        UserResponse response = UserMapper.toDTO(user);
+        return ResponseEntity.ok().body(response);
+
     }
 
 
