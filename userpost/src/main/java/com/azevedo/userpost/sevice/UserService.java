@@ -40,4 +40,14 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public UserResponse update(String id, UserRequest request) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("ID não encontrado"));
+
+        user.setName(request.getName());
+        user.setEmail(request.getEmail());
+        User update = userRepository.save(user);
+        return UserMapper.toDTO(update);
+    }
+
 }
