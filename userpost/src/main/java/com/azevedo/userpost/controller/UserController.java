@@ -1,6 +1,7 @@
 package com.azevedo.userpost.controller;
 
 import com.azevedo.userpost.domain.User;
+import com.azevedo.userpost.dto.UserRequest;
 import com.azevedo.userpost.dto.UserResponse;
 import com.azevedo.userpost.mapper.UserMapper;
 import com.azevedo.userpost.sevice.UserService;
@@ -32,6 +33,13 @@ public class UserController {
     public ResponseEntity<UserResponse> findById(@PathVariable String id) {
         User user = userService.findById(id);
         UserResponse response = UserMapper.toDTO(user);
+        return ResponseEntity.ok().body(response);
+
+    }
+
+    @PostMapping
+    public ResponseEntity<UserResponse> insert(@RequestBody UserRequest request) {
+        UserResponse response = userService.insert(request);
         return ResponseEntity.ok().body(response);
 
     }
