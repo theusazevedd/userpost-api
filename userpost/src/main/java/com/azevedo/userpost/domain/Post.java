@@ -5,7 +5,6 @@ import com.azevedo.userpost.dto.CommentDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -21,16 +20,16 @@ public class Post {
     @Id
     private String id;
 
-    private LocalDate createAt;
+    private LocalDate createdAt;
     private String title;
     private String body;
     private AuthorDTO author;
 
     private List<CommentDTO> comments = new ArrayList<>();
 
-    public Post(String id, LocalDate createAt, String title, String body, AuthorDTO author) {
+    public Post(String id, LocalDate createdAt, String title, String body, AuthorDTO author) {
         this.id = id;
-        this.createAt = createAt;
+        this.createdAt = createdAt;
         this.title = title;
         this.body = body;
         this.author = author;

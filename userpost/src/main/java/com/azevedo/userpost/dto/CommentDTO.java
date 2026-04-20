@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class CommentDTO {
 
     private String text;
-    private LocalDate createAt;
+    private LocalDate createdAt;
     private AuthorDTO author;
 
 }

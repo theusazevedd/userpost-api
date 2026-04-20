@@ -11,7 +11,7 @@ import java.util.List;
 public class PostResponse {
 
     private String id;
-    private LocalDate createAt;
+    private LocalDate createdAt;
     private String title;
     private String body;
     private AuthorDTO author;

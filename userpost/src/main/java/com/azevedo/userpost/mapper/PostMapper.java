@@ -8,7 +8,7 @@ public class PostMapper {
     public static PostResponse toDTO(Post post) {
         return new PostResponse(
                 post.getId(),
-                post.getCreateAt(),
+                post.getCreatedAt(),
                 post.getTitle(),
                 post.getBody(),
                 post.getAuthor(),

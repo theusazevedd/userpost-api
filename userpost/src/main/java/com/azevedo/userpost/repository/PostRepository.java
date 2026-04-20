@@ -16,7 +16,7 @@ public interface PostRepository extends MongoRepository<Post, String> {
 
     List<Post> findByTitleContainingIgnoreCase(String text);
 
-    @Query("{ $and: [ { createAt: { $gte: ?1 } }, { createAt: { $lte: ?2 } } , { $or: [ { 'title' : { $regex: ?0, $options: 'i' } }, { 'body' : { $regex: ?0, $options: 'i' } }, { 'comments.text' : { $regex: ?0, $options: 'i' } } ] } ] }")
+    @Query("{ $and: [ { createdAt: { $gte: ?1 } }, { createdAt: { $lte: ?2 } } , { $or: [ { 'title' : { $regex: ?0, $options: 'i' } }, { 'body' : { $regex: ?0, $options: 'i' } }, { 'comments.text' : { $regex: ?0, $options: 'i' } } ] } ] }")
     List<Post> fullSearch(String text, LocalDate minDate, LocalDate maxDate);
 
 
