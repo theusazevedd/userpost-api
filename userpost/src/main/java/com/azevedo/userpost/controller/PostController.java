@@ -2,8 +2,9 @@ package com.azevedo.userpost.controller;
 
 import com.azevedo.userpost.domain.Post;
 import com.azevedo.userpost.dto.PostResponse;
+import com.azevedo.userpost.exceptions.ResourceNotFoundException;
 import com.azevedo.userpost.mapper.PostMapper;
-import com.azevedo.userpost.sevice.PostService;
+import com.azevedo.userpost.service.PostService;
 import com.azevedo.userpost.util.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,9 @@ public class PostController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PostResponse> findById(@PathVariable String id) {
+        if (id == null || id.trim().isEmpty()) {
+            throw new ResourceNotFoundException("ID não pode ser nulo ou vazio");
+        }
         Post post = postService.findById(id);
         PostResponse response = PostMapper.toDTO(post);
         return ResponseEntity.ok().body(response);

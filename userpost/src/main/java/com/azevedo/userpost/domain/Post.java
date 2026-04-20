@@ -2,10 +2,8 @@ package com.azevedo.userpost.domain;
 
 import com.azevedo.userpost.dto.AuthorDTO;
 import com.azevedo.userpost.dto.CommentDTO;
-import lombok.AccessLevel;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @Document(collection = "posts")
 public class Post {
@@ -29,7 +26,6 @@ public class Post {
     private String body;
     private AuthorDTO author;
 
-    @Setter(AccessLevel.NONE)
     private List<CommentDTO> comments = new ArrayList<>();
 
     public Post(String id, LocalDate createAt, String title, String body, AuthorDTO author) {

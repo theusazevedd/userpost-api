@@ -6,7 +6,7 @@ import com.azevedo.userpost.dto.UserRequest;
 import com.azevedo.userpost.dto.UserResponse;
 import com.azevedo.userpost.mapper.PostMapper;
 import com.azevedo.userpost.mapper.UserMapper;
-import com.azevedo.userpost.sevice.UserService;
+import com.azevedo.userpost.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.azevedo.userpost.sevice;
+package com.azevedo.userpost.service;
 
 import com.azevedo.userpost.domain.Post;
 import com.azevedo.userpost.exceptions.ResourceNotFoundException;
