@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -27,13 +28,32 @@ public class PostController {
 
     }
 
-    @GetMapping("/title-search")
+    @GetMapping("/titlesearch")
     public ResponseEntity<List<PostResponse>> findByTitle(
             @RequestParam(value = "text", defaultValue = "") String text) {
 
         text = URL.decodeParam(text);
 
         List<PostResponse> response = postService.findByTitle(text)
+                .stream()
+                .map(PostMapper::toDTO)
+                .toList();
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/fullsearch")
+    public ResponseEntity<List<PostResponse>> fullSearch(
+            @RequestParam(value = "text", defaultValue = "") String text,
+            @RequestParam(value = "minDate", defaultValue = "") String minDate,
+            @RequestParam(value = "maxDate", defaultValue = "") String maxDate) {
+
+        text = URL.decodeParam(text);
+
+        LocalDate min = URL.convertDate(minDate, LocalDate.of(1970, 1, 1));
+        LocalDate max = URL.convertDate(maxDate, LocalDate.now());
+
+        List<PostResponse> response = postService.fullSearch(text, min, max)
                 .stream()
                 .map(PostMapper::toDTO)
                 .toList();
