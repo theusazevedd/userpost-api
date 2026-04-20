@@ -1,20 +1,23 @@
 package com.azevedo.userpost.domain;
 
 import com.azevedo.userpost.dto.AuthorDTO;
-import lombok.AllArgsConstructor;
+import com.azevedo.userpost.dto.CommentDTO;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Document(collection = "posts")
 public class Post {
 
@@ -25,6 +28,17 @@ public class Post {
     private String title;
     private String body;
     private AuthorDTO author;
+
+    @Setter(AccessLevel.NONE)
+    private List<CommentDTO> comments = new ArrayList<>();
+
+    public Post(String id, LocalDate createAt, String title, String body, AuthorDTO author) {
+        this.id = id;
+        this.createAt = createAt;
+        this.title = title;
+        this.body = body;
+        this.author = author;
+    }
 
     @Override
     public boolean equals(Object o) {
