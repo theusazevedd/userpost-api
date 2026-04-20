@@ -11,7 +11,8 @@ public class PostMapper {
                 post.getCreateAt(),
                 post.getTitle(),
                 post.getBody(),
-                post.getAuthor()
+                post.getAuthor(),
+                post.getComments()
         );
     }
 }
