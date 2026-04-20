@@ -1,8 +1,10 @@
 package com.azevedo.userpost.controller;
 
 import com.azevedo.userpost.domain.User;
+import com.azevedo.userpost.dto.PostResponse;
 import com.azevedo.userpost.dto.UserRequest;
 import com.azevedo.userpost.dto.UserResponse;
+import com.azevedo.userpost.mapper.PostMapper;
 import com.azevedo.userpost.mapper.UserMapper;
 import com.azevedo.userpost.sevice.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,18 @@ public class UserController {
                                                @RequestBody UserRequest request) {
         UserResponse userResponse = userService.update(id, request);
         return ResponseEntity.ok().body(userResponse);
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<PostResponse>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+
+        List<PostResponse> response = user.getPosts().stream()
+                .map(PostMapper::toDTO)
+                .toList();
+
+        return ResponseEntity.ok(response);
+
     }
 
 
