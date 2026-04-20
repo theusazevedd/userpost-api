@@ -31,28 +31,28 @@ public class Instantiation implements CommandLineRunner {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        User maria = new User(null, "Maria Brown", "maria@gmail.com");
-        User alex = new User(null, "Alex Green", "alex@gmail.com");
-        User bob = new User(null, "Bob Grey", "bob@gmail.com");
+        User luana = new User(null, "Luana Silva", "luana@gmail.com");
+        User bruno = new User(null, "Bruno Victor", "bruno@gmail.com");
+        User lucas = new User(null, "Lucas Santos", "lucas@gmail.com");
 
-        userRepository.saveAll(Arrays.asList(maria, alex, bob));
+        userRepository.saveAll(Arrays.asList(luana, bruno, lucas));
 
-        Post post1 = new Post(null, LocalDate.parse("21/03/2023", formatter),
-                "Partiu Viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
+        Post post1 = new Post(null, LocalDate.parse("21/03/2026", formatter),
+                "Viagem para São Paulo", "Viagem para São Paulo marcada! Dicas de restaurantes e passeios são bem-vindas.", new AuthorDTO(luana));
 
-        Post post2 = new Post(null, LocalDate.parse("23/03/2023", formatter),
-                "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
+        Post post2 = new Post(null, LocalDate.parse("23/03/2026", formatter),
+                "Bom dia", "Acordei feliz hoje!", new AuthorDTO(luana));
 
-        CommentDTO c1 = new CommentDTO("Boa viagem mano!", LocalDate.parse("21/03/2018", formatter), new AuthorDTO(alex));
-        CommentDTO c2 = new CommentDTO("Aproveite", LocalDate.parse("22/03/2018", formatter), new AuthorDTO(bob));
-        CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", LocalDate.parse("23/03/2018", formatter), new AuthorDTO(alex));
+        CommentDTO c1 = new CommentDTO("Recomendo visitar a Avenida Paulista e o Parque Ibirapuera!!", LocalDate.parse("21/03/2026", formatter), new AuthorDTO(bruno));
+        CommentDTO c2 = new CommentDTO("Se puder, passa no Mercado Municipal. Vale muito a pena!", LocalDate.parse("22/03/2026", formatter), new AuthorDTO(lucas));
+        CommentDTO c3 = new CommentDTO("Fica de olho no trânsito, especialmente em horário de pico.", LocalDate.parse("23/03/2026", formatter), new AuthorDTO(bruno));
 
         post1.getComments().addAll(Arrays.asList(c1, c2));
         post2.getComments().addAll(Arrays.asList(c3));
 
         postRepository.saveAll(Arrays.asList(post1, post2));
 
-        maria.getPosts().addAll(Arrays.asList(post1, post2));
-        userRepository.save(maria);
+        luana.getPosts().addAll(Arrays.asList(post1, post2));
+        userRepository.save(luana);
     }
 }
